@@ -17,6 +17,9 @@ GEM
     libv8 (3.3.10.4)
     multi_json (1.3.6)
     rack (1.4.1)
+    rack-flash3 (1.0.1)
+      rack
+      rack
     rack-protection (1.2.0)
       rack
     rack-test (0.6.1)
@@ -45,6 +48,7 @@ DEPENDENCIES
   coffee-script
   json
   less
+  rack-flash3
   sinatra
   sinatra-assetpack
   therubyracer

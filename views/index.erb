@@ -1,11 +1,18 @@
 <div class="row">
-	<% if submitted == 'true' %>
+	<% if flash.has?(:response) %>
 		<div class="span6 offset3">
-			<div id="thank-you" class="alert alert-success alert-block">
-			  <h4 class="alert-heading">Thank you!</h4>
-			  <button class="close" data-dismiss="alert">×</button>
-			  By submitting issues, your helping EUI become more awesome. I'll be sure to look into this issue.
-			</div>
+			<% if flash[:response]['errors'] %>
+				<div id="thank-you" class="alert alert-error">
+				  <button class="close" data-dismiss="alert">×</button>
+				  <strong><%= flash[:response]['message'] %>:</strong> Please fill in missing fields and try again.
+				</div>
+			<% else %>
+				<div id="thank-you" class="alert alert-success alert-block">
+				  <h4 class="alert-heading">Thank you!</h4>
+				  <button class="close" data-dismiss="alert">×</button>
+				  By submitting issues, your helping EUI become more awesome. I'll be sure to look into this issue.
+				</div>
+			<% end %>
 		</div>
 	<% end %>
 </div>
@@ -36,8 +43,8 @@
 					</div>
 		    </legend>
 
-		    <div class="control-group">
-		      <label class="control-label">Issue Title</label>
+		    <div class="control-group <%= 'error' if error?('title', flash[:response]) %>">
+		      <label class="control-label">Issue Title *</label>
 		      <div class="controls">
 		        <input type="text" class="span5" name="title" rel="tooltip" data-title="Something useful please">
 		      </div>
@@ -47,7 +54,7 @@
 		      <label class="control-label">Issue Body</label>
 		      <div class="controls">
 		        <textarea class="span5" rows=5 name="body"></textarea>
-		        <p class="help-block">Information about the issue, how to replicate. Situations where issue occurs.</p>
+		        <p class="help-block">Please provide information like, how to replicate, and when this issue occurs.</p>
 		      </div>
 		    </div>
 

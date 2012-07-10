@@ -40,7 +40,7 @@ class Repository
 
     req.body = data.to_json
     response = http.request(req)
-		return JSON.parse response.body
+		return JSON.parse(response.body)
 	end
 
 end
